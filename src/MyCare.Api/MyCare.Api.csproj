@@ -16,4 +16,8 @@
     <ProjectReference Include="..\MyCare.Exception\MyCare.Exception.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>

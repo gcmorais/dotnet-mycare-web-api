@@ -1,6 +1,0 @@
-@MyCare.Api_HostAddress = http://localhost:5121
-
-GET {{MyCare.Api_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
