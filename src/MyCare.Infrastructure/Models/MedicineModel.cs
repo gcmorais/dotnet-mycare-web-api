@@ -1,7 +1,9 @@
-﻿namespace MyCare.Communication.Requests
+﻿namespace MyCare.Infrastructure.Entities
 {
-    public class RequestRegisterMedicineJson
+    public class MedicineModel
     {
+        public int Id { get; set; }
+
         public string Name { get; set; } = string.Empty;
 
         public string ActivePrinciple { get; set; } = string.Empty;
@@ -18,6 +20,6 @@
 
         public string Manufacturer { get; set; } = string.Empty;
 
-        public DateTime Date { get; set; }
+        public UserModel User { get; set; }
     }
 }

@@ -16,15 +16,5 @@ public class RegisterMedicineUseCase
         {
             throw new MyCareException(ResourceErrorMessages.NAME_EMPTY);
         }
-
-        if (string.IsNullOrWhiteSpace(request.Description))
-        {
-            throw new MyCareException(ResourceErrorMessages.DESCRIPTION_EMPTY);
-        }
-
-        if (string.IsNullOrWhiteSpace(request.Status))
-        {
-            throw new MyCareException(ResourceErrorMessages.STATUS_EMPTY);
-        }
     }
 }
