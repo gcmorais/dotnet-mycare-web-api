@@ -71,7 +71,7 @@ We first need to connect to the database, so in the appsettings.json file (which
 "DefaultConnection": "server= localhost\\Example; database= ExampleDB; trusted_connection=true; trustservercertificate=true"
 ```
 
-I used the connection to the bank via Windows authentication, so use the tag `trusted_connection = true;` 
+I used the database connection via Windows authentication, so use the tag `trusted_connection = true;` 
 
 if you need it, use the tags `user id=login;` `password=password;` see if it makes sense in your use case.
 
