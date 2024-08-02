@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyCare.Application.UseCases.Medicine.Register;
 using MyCare.Communication.Requests;
 using MyCare.Exception;
 using MyCare.Exception.ExceptionsBase;
@@ -15,9 +14,9 @@ namespace MyCare.Api.Controllers
         {
             try
             {
-                var useCase = new RegisterMedicineUseCase();
+                
 
-                useCase.Execute(request);
+            
 
                 return Created();
             }

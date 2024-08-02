@@ -2,8 +2,8 @@
 using MyCare.Exception;
 using MyCare.Exception.ExceptionsBase;
 
-namespace MyCare.Application.UseCases.Medicine.Register;
-public class RegisterMedicineUseCase
+namespace MyCare.Application.UseCases.Medicine;
+public class MedicineService
 {
     public void Execute(RequestRegisterMedicineJson request)
     {
@@ -12,7 +12,7 @@ public class RegisterMedicineUseCase
 
     private void Validate(RequestRegisterMedicineJson request)
     {
-        if(string.IsNullOrWhiteSpace(request.Name))
+        if (string.IsNullOrWhiteSpace(request.Name))
         {
             throw new MyCareException(ResourceErrorMessages.NAME_EMPTY);
         }

@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using MyCare.Application.UseCases.User.Register;
-using MyCare.Communication.Requests;
-using MyCare.Exception;
-using MyCare.Exception.ExceptionsBase;
+﻿using Microsoft.AspNetCore.Mvc;
+using MyCare.Application.Services.User;
+using MyCare.Communication.Responses;
+using MyCare.Infrastructure.Entities;
 
 namespace MyCare.Api.Controllers
 {
@@ -11,25 +9,18 @@ namespace MyCare.Api.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        [HttpPost]
-        public IActionResult Register([FromBody] RequestRegisterUserJson request)
+        private readonly IUserInterface _userInterface;
+        public UserController(IUserInterface userInterface)
         {
-            try
-            {
-                var UseCase = new RegisterUserUseCase();
+            _userInterface = userInterface;
+        }
 
-                UseCase.Execute(request);
 
-                return Created();
-            }
-            catch (MyCareException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ResourceErrorMessages.UNKNOWN_ERROR);
-            }
+        [HttpGet("ListUsers")]
+        public async Task<ActionResult<ResponseModel<List<UserModel>>>> ListUsers()
+        {
+            var users = await _userInterface.ListUsers();
+            return Ok(users);
         }
     }
 }

@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using MyCare.Application.Services.User;
+using MyCare.Application.UseCases.User;
 using MyCare.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IUserInterface, UserService>();
+
 
 builder.Services.AddDbContext<MyCareDbContext>(options =>
 {
