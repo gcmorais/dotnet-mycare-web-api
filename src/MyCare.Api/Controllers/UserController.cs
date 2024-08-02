@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyCare.Application.Services.User;
 using MyCare.Communication.Responses;
+using MyCare.Exception.ExceptionsBase;
+using MyCare.Exception;
 using MyCare.Infrastructure.Entities;
+using MyCare.Communication.Requests;
 
 namespace MyCare.Api.Controllers
 {
@@ -20,6 +23,35 @@ namespace MyCare.Api.Controllers
         public async Task<ActionResult<ResponseModel<List<UserModel>>>> ListUsers()
         {
             var users = await _userInterface.ListUsers();
+            return Ok(users);
+        }
+
+        [HttpGet("GetById/{userId}")]
+        public async Task<ActionResult<ResponseModel<UserModel>>> GetUserById(Guid userId)
+        {
+            var users = await _userInterface.GetUserById(userId);
+            return Ok(users);
+        }
+
+        [HttpGet("GetUserByMedId/{medId}")]
+        public async Task<ActionResult<ResponseModel<UserModel>>> GetUserByMedId(int medId)
+        {
+            var users = await _userInterface.GetUserByMedId(medId);
+            return Ok(users);
+        }
+
+        [HttpPost("CreateUser")]
+        public async Task<ActionResult<ResponseModel<List<UserModel>>>> CreateUser(RequestRegisterUserJson requestRegisterUserJson)
+        {
+            var users = await _userInterface.CreateUser(requestRegisterUserJson);
+            return Ok(users);
+        }
+
+
+        [HttpPut("EditUser")]
+        public async Task<ActionResult<ResponseModel<List<UserModel>>>> EditUser(RequestEditUserJson requestEditUserJson)
+        {
+            var users = await _userInterface.EditUser(requestEditUserJson);
             return Ok(users);
         }
     }

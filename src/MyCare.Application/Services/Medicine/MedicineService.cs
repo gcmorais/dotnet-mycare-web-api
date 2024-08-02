@@ -1,20 +1,39 @@
-﻿using MyCare.Communication.Requests;
-using MyCare.Exception;
+﻿using Microsoft.EntityFrameworkCore;
+using MyCare.Application.Services.Medicine;
+using MyCare.Communication.Responses;
 using MyCare.Exception.ExceptionsBase;
+using MyCare.Infrastructure;
+using MyCare.Infrastructure.Entities;
 
 namespace MyCare.Application.UseCases.Medicine;
-public class MedicineService
+public class MedicineService : IMedicineInterface
 {
-    public void Execute(RequestRegisterMedicineJson request)
+    private readonly MyCareDbContext _context;
+
+    public MedicineService(MyCareDbContext context)
     {
-        Validate(request);
+        _context = context;
     }
 
-    private void Validate(RequestRegisterMedicineJson request)
+    public async Task<ResponseModel<List<MedicineModel>>> ListMedicines()
     {
-        if (string.IsNullOrWhiteSpace(request.Name))
+        ResponseModel<List<MedicineModel>> resposta = new();
+
+        try
         {
-            throw new MyCareException(ResourceErrorMessages.NAME_EMPTY);
+            var medicament = await _context.Medicines.Include(item => item.User).ToListAsync();
+
+            resposta.Dados = medicament;
+            resposta.Mensagem = "Visualizando todos os registros!";
+
+            return resposta;
+        }
+        catch (MyCareException ex)
+        {
+            resposta.Mensagem = ex.Message;
+            resposta.Status = false;
+
+            return resposta;
         }
     }
 }

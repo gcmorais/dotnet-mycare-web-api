@@ -120,8 +120,17 @@
   <data name="DESCRIPTION_EMPTY" xml:space="preserve">
     <value>Description is invalid or null.</value>
   </data>
+  <data name="EMAIL_EMPTY" xml:space="preserve">
+    <value>Email is invalid or null.</value>
+  </data>
   <data name="NAME_EMPTY" xml:space="preserve">
     <value>Name is invalid or null.</value>
+  </data>
+  <data name="NO_REGISTRY" xml:space="preserve">
+    <value>No records found!</value>
+  </data>
+  <data name="PASSWORD_EMPTY" xml:space="preserve">
+    <value>Password is invalid or null.</value>
   </data>
   <data name="STATUS_EMPTY" xml:space="preserve">
     <value>Status is invalid or null.</value>

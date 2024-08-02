@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyCare.Communication.Requests;
-using MyCare.Exception;
-using MyCare.Exception.ExceptionsBase;
+using MyCare.Application.Services.Medicine;
+using MyCare.Application.Services.User;
+using MyCare.Communication.Responses;
+using MyCare.Infrastructure.Entities;
 
 namespace MyCare.Api.Controllers
 {
@@ -9,25 +10,18 @@ namespace MyCare.Api.Controllers
     [ApiController]
     public class MedicineController : ControllerBase
     {
-        [HttpPost]
-        public IActionResult Register([FromBody] RequestRegisterMedicineJson request)
+        private readonly IMedicineInterface _medicineInterface;
+
+        public MedicineController(IMedicineInterface medicineInterface)
         {
-            try
-            {
-                
+            _medicineInterface = medicineInterface;
+        }
 
-            
-
-                return Created();
-            }
-            catch(MyCareException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ResourceErrorMessages.UNKNOWN_ERROR);
-            }
+        [HttpGet("ListMedicines")]
+        public async Task<ActionResult<ResponseModel<List<MedicineModel>>>> ListMedicines()
+        {
+            var medicines = await _medicineInterface.ListMedicines();
+            return Ok(medicines);
         }
     }
 }

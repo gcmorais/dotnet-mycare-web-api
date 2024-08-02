@@ -61,6 +61,33 @@ namespace MyCare.Communication.Responses {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a User created successfully!.
+        /// </summary>
+        public static string CREATE_USER_MESSAGE_SUCCESS {
+            get {
+                return ResourceManager.GetString("CREATE_USER_MESSAGE_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Item edited successfully!.
+        /// </summary>
+        public static string EDIT_USER_SUCCESS_MESSAGE {
+            get {
+                return ResourceManager.GetString("EDIT_USER_SUCCESS_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The user was found successfully.
+        /// </summary>
+        public static string GET_USER_SUCCESS_MESSAGE {
+            get {
+                return ResourceManager.GetString("GET_USER_SUCCESS_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a All users have been collected.
         /// </summary>
         public static string LIST_USERS_SUCCESS_MESSAGE {

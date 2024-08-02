@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using MyCare.Application.Services.Medicine;
 using MyCare.Application.Services.User;
+using MyCare.Application.UseCases.Medicine;
 using MyCare.Application.UseCases.User;
 using MyCare.Infrastructure;
 
@@ -13,6 +15,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IUserInterface, UserService>();
+builder.Services.AddScoped<IMedicineInterface, MedicineService>();
 
 
 builder.Services.AddDbContext<MyCareDbContext>(options =>
