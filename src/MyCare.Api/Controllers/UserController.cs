@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyCare.Application.Services.User;
-using MyCare.Communication.Responses;
-using MyCare.Exception.ExceptionsBase;
-using MyCare.Exception;
-using MyCare.Infrastructure.Entities;
 using MyCare.Communication.Requests;
+using MyCare.Communication.Responses;
+using MyCare.Infrastructure.Entities;
 
 namespace MyCare.Api.Controllers
 {

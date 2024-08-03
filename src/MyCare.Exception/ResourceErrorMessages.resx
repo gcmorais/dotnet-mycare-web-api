@@ -123,6 +123,9 @@
   <data name="EMAIL_EMPTY" xml:space="preserve">
     <value>Email is invalid or null.</value>
   </data>
+  <data name="ID_ERROR" xml:space="preserve">
+    <value>No records with this id found!</value>
+  </data>
   <data name="NAME_EMPTY" xml:space="preserve">
     <value>Name is invalid or null.</value>
   </data>

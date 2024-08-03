@@ -61,6 +61,15 @@ namespace MyCare.Communication.Responses {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Medicine created successfully!.
+        /// </summary>
+        public static string CREATE_MED_SUCCESS_MESSAGE {
+            get {
+                return ResourceManager.GetString("CREATE_MED_SUCCESS_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a User created successfully!.
         /// </summary>
         public static string CREATE_USER_MESSAGE_SUCCESS {
@@ -70,7 +79,16 @@ namespace MyCare.Communication.Responses {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Item edited successfully!.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Medicament edited successfully!.
+        /// </summary>
+        public static string EDIT_MED_SUCCESS_MESSAGE {
+            get {
+                return ResourceManager.GetString("EDIT_MED_SUCCESS_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a User edited successfully!.
         /// </summary>
         public static string EDIT_USER_SUCCESS_MESSAGE {
             get {
@@ -84,6 +102,15 @@ namespace MyCare.Communication.Responses {
         public static string GET_USER_SUCCESS_MESSAGE {
             get {
                 return ResourceManager.GetString("GET_USER_SUCCESS_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a All medications were returned!.
+        /// </summary>
+        public static string LIST_MED_SUCCESS_MESSAGE {
+            get {
+                return ResourceManager.GetString("LIST_MED_SUCCESS_MESSAGE", resourceCulture);
             }
         }
         

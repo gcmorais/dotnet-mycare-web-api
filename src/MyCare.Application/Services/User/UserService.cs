@@ -1,12 +1,11 @@
-﻿using MyCare.Communication.Requests;
-using MyCare.Exception.ExceptionsBase;
-using MyCare.Exception;
-using MyCare.Infrastructure;
+﻿using Microsoft.EntityFrameworkCore;
 using MyCare.Application.Services.User;
+using MyCare.Communication.Requests;
 using MyCare.Communication.Responses;
+using MyCare.Exception;
+using MyCare.Exception.ExceptionsBase;
+using MyCare.Infrastructure;
 using MyCare.Infrastructure.Entities;
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
 
 namespace MyCare.Application.UseCases.User
 {

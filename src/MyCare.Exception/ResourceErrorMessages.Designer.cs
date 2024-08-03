@@ -79,6 +79,15 @@ namespace MyCare.Exception {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a No records with this id found!.
+        /// </summary>
+        public static string ID_ERROR {
+            get {
+                return ResourceManager.GetString("ID_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Name is invalid or null..
         /// </summary>
         public static string NAME_EMPTY {
