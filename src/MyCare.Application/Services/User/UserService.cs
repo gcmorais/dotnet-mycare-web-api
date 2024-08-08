@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyCare.Application.Services.Password;
 using MyCare.Application.Services.User;
 using MyCare.Communication.Requests;
 using MyCare.Communication.Responses;
@@ -12,10 +13,12 @@ namespace MyCare.Application.UseCases.User
     public class UserService : IUserInterface
     {
         private readonly MyCareDbContext _context;
+        private readonly IPasswordInterface _passwordInterface;
 
-        public UserService(MyCareDbContext context)
+        public UserService(MyCareDbContext context, IPasswordInterface passwordInterface)
         {
             _context = context;
+            _passwordInterface = passwordInterface;
         }
 
         public async Task<ResponseModel<List<UserModel>>> CreateUser(RequestRegisterUserJson requestRegisterUserJson)
@@ -27,11 +30,14 @@ namespace MyCare.Application.UseCases.User
 
                 Validate(requestRegisterUserJson);
 
+                _passwordInterface.CreateHashPassword(requestRegisterUserJson.Password, out byte[] hashPassword, out byte[] saltPassword);
+
                 var user = new UserModel()
                 {
                     Name = requestRegisterUserJson.Name,
                     Email = requestRegisterUserJson.Email,
-                    Password = requestRegisterUserJson.Password,
+                    HashPasswrod = hashPassword,
+                    SaltPassword = saltPassword
                 };
 
                 _context.Add(user);
@@ -58,6 +64,7 @@ namespace MyCare.Application.UseCases.User
 
             try
             {
+                _passwordInterface.CreateHashPassword(requestEditUserJson.Password, out byte[] hashPassword, out byte[] saltPassword);
                 var user = await _context.Users.FirstOrDefaultAsync(user => user.Id == requestEditUserJson.Id);
 
                 if(user == null)
@@ -67,9 +74,12 @@ namespace MyCare.Application.UseCases.User
                     return resposta;
                 }
 
+
+
                 user.Name = requestEditUserJson.Name;
                 user.Email = requestEditUserJson.Email;
-                user.Password = requestEditUserJson.Password;
+                user.SaltPassword = saltPassword;
+                user.HashPasswrod = hashPassword;
 
                 _context.Update(user);
                 await _context.SaveChangesAsync();
@@ -169,6 +179,9 @@ namespace MyCare.Application.UseCases.User
 
         private void Validate(RequestRegisterUserJson request)
         {
+
+            var email = _context.Users.FirstOrDefault(x => x.Email == request.Email);
+
             if (string.IsNullOrWhiteSpace(request.Name))
             {
                 throw new MyCareException(ResourceErrorMessages.NAME_EMPTY);
@@ -179,9 +192,19 @@ namespace MyCare.Application.UseCases.User
                 throw new MyCareException(ResourceErrorMessages.EMAIL_EMPTY);
             }
 
+            if (email != null)
+            {
+                throw new MyCareException(ResourceErrorMessages.EMAIL_ALREADY_REGISTERED);
+            }
+
             if (string.IsNullOrWhiteSpace(request.Password))
             {
                 throw new MyCareException(ResourceErrorMessages.PASSWORD_EMPTY);
+            }
+
+            if(request.ConfirmPassword != request.Password)
+            {
+                throw new MyCareException(ResourceErrorMessages.PASSWORD_CONFIRM_ERROR);
             }
         }
     }

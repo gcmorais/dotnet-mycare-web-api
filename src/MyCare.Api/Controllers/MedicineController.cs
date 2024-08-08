@@ -39,7 +39,8 @@ namespace MyCare.Api.Controllers
             return Ok(medicines);
         }
 
-        [HttpGet("GetMedById")]
+        [HttpGet]
+        [Route("{id}")]
         public async Task<ActionResult<ResponseModel<MedicineModel>>> GetMedicamentById(int id)
         {
             var medicines = await _medicineInterface.GetMedicamentById(id);

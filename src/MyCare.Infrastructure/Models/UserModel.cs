@@ -9,7 +9,10 @@ namespace MyCare.Infrastructure.Entities
 
         public string Email { get; set; } = string.Empty;
 
-        public string Password { get; set; } = string.Empty;
+        public byte[] HashPasswrod { get; set; }
+
+        public byte[] SaltPassword { get; set; }
+
         [JsonIgnore]
         public ICollection<MedicineModel> Medicine { get; set; } = [];
 

@@ -70,6 +70,15 @@ namespace MyCare.Exception {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Credentials error: Email already registered..
+        /// </summary>
+        public static string EMAIL_ALREADY_REGISTERED {
+            get {
+                return ResourceManager.GetString("EMAIL_ALREADY_REGISTERED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Email is invalid or null..
         /// </summary>
         public static string EMAIL_EMPTY {
@@ -102,6 +111,15 @@ namespace MyCare.Exception {
         public static string NO_REGISTRY {
             get {
                 return ResourceManager.GetString("NO_REGISTRY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The passwords entered do not match..
+        /// </summary>
+        public static string PASSWORD_CONFIRM_ERROR {
+            get {
+                return ResourceManager.GetString("PASSWORD_CONFIRM_ERROR", resourceCulture);
             }
         }
         

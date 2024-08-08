@@ -24,7 +24,8 @@ namespace MyCare.Api.Controllers
             return Ok(users);
         }
 
-        [HttpGet("GetById/{userId}")]
+        [HttpGet]
+        [Route("{userId}")]
         public async Task<ActionResult<ResponseModel<UserModel>>> GetUserById(Guid userId)
         {
             var users = await _userInterface.GetUserById(userId);
