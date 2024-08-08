@@ -61,6 +61,15 @@ namespace MyCare.Exception {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Category is invalid or null..
+        /// </summary>
+        public static string CATEGORY_EMPTY {
+            get {
+                return ResourceManager.GetString("CATEGORY_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Description is invalid or null..
         /// </summary>
         public static string DESCRIPTION_EMPTY {
@@ -97,6 +106,15 @@ namespace MyCare.Exception {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Manufacturer is invalid or null..
+        /// </summary>
+        public static string MANUFACTURER_EMPTY {
+            get {
+                return ResourceManager.GetString("MANUFACTURER_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Name is invalid or null..
         /// </summary>
         public static string NAME_EMPTY {
@@ -129,6 +147,15 @@ namespace MyCare.Exception {
         public static string PASSWORD_EMPTY {
             get {
                 return ResourceManager.GetString("PASSWORD_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Reference is invalid or null..
+        /// </summary>
+        public static string REFERENCE_EMPTY {
+            get {
+                return ResourceManager.GetString("REFERENCE_EMPTY", resourceCulture);
             }
         }
         

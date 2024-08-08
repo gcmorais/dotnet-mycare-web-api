@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Azure.Core;
+using Microsoft.EntityFrameworkCore;
 using MyCare.Application.Services.Medicine;
 using MyCare.Communication.Requests;
 using MyCare.Communication.Responses;
@@ -24,6 +25,8 @@ public class MedicineService : IMedicineInterface
         try
         {
             var user = await _context.Users.FirstOrDefaultAsync(userData => userData.Id == requestRegisterMedicineJson.User.Id);
+
+            Validate(requestRegisterMedicineJson);
 
             if (user == null)
             {
@@ -67,6 +70,7 @@ public class MedicineService : IMedicineInterface
 
         try
         {
+
             var medicament = await _context.Medicines
                 .Include(u => u.User)
                 .FirstOrDefaultAsync(medData => medData.Id == requestEditMedicineJson.Id);
@@ -83,6 +87,26 @@ public class MedicineService : IMedicineInterface
             {
                 response.Mensagem = ResourceErrorMessages.ID_ERROR;
                 return response;
+            }
+
+            if (string.IsNullOrWhiteSpace(requestEditMedicineJson.Name))
+            {
+                throw new MyCareException(ResourceErrorMessages.NAME_EMPTY);
+            }
+
+            if (string.IsNullOrWhiteSpace(requestEditMedicineJson.Category))
+            {
+                throw new MyCareException(ResourceErrorMessages.CATEGORY_EMPTY);
+            }
+
+            if (string.IsNullOrWhiteSpace(requestEditMedicineJson.Manufacturer))
+            {
+                throw new MyCareException(ResourceErrorMessages.MANUFACTURER_EMPTY);
+            }
+
+            if (string.IsNullOrWhiteSpace(requestEditMedicineJson.Reference))
+            {
+                throw new MyCareException(ResourceErrorMessages.REFERENCE_EMPTY);
             }
 
             medicament.Name = requestEditMedicineJson.Name;
@@ -159,6 +183,29 @@ public class MedicineService : IMedicineInterface
             resposta.Status = false;
 
             return resposta;
+        }
+    }
+
+    private void Validate(RequestRegisterMedicineJson request)
+    {
+        if (string.IsNullOrWhiteSpace(request.Name))
+        {
+            throw new MyCareException(ResourceErrorMessages.NAME_EMPTY);
+        }
+
+        if (string.IsNullOrWhiteSpace(request.Category))
+        {
+            throw new MyCareException(ResourceErrorMessages.CATEGORY_EMPTY);
+        }
+
+        if (string.IsNullOrWhiteSpace(request.Manufacturer))
+        {
+            throw new MyCareException(ResourceErrorMessages.MANUFACTURER_EMPTY);
+        }
+
+        if (string.IsNullOrWhiteSpace(request.Reference))
+        {
+            throw new MyCareException(ResourceErrorMessages.REFERENCE_EMPTY);
         }
     }
 }

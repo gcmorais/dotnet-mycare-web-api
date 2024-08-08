@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Azure;
+using Azure.Core;
+using Microsoft.EntityFrameworkCore;
 using MyCare.Application.Services.Password;
 using MyCare.Application.Services.User;
 using MyCare.Communication.Requests;
@@ -60,7 +62,7 @@ namespace MyCare.Application.UseCases.User
 
         public async Task<ResponseModel<List<UserModel>>> EditUser(RequestEditUserJson requestEditUserJson)
         {
-            ResponseModel<List<UserModel>> resposta = new();
+            ResponseModel<List<UserModel>> response = new();
 
             try
             {
@@ -69,11 +71,25 @@ namespace MyCare.Application.UseCases.User
 
                 if(user == null)
                 {
-                    resposta.Mensagem = ResourceErrorMessages.NO_REGISTRY;
+                    response.Mensagem = ResourceErrorMessages.NO_REGISTRY;
 
-                    return resposta;
+                    return response;
                 }
 
+                if (string.IsNullOrWhiteSpace(requestEditUserJson.Name))
+                {
+                    throw new MyCareException(ResourceErrorMessages.NAME_EMPTY);
+                }
+
+                if (string.IsNullOrWhiteSpace(requestEditUserJson.Email))
+                {
+                    throw new MyCareException(ResourceErrorMessages.EMAIL_EMPTY);
+                }
+
+                if (string.IsNullOrWhiteSpace(requestEditUserJson.Password))
+                {
+                    throw new MyCareException(ResourceErrorMessages.PASSWORD_EMPTY);
+                }
 
 
                 user.Name = requestEditUserJson.Name;
@@ -84,17 +100,17 @@ namespace MyCare.Application.UseCases.User
                 _context.Update(user);
                 await _context.SaveChangesAsync();
 
-                resposta.Dados = await _context.Users.ToListAsync();
-                resposta.Mensagem = ResourceSuccessMessages.EDIT_USER_SUCCESS_MESSAGE;
+                response.Dados = await _context.Users.ToListAsync();
+                response.Mensagem = ResourceSuccessMessages.EDIT_USER_SUCCESS_MESSAGE;
 
-                return resposta;
+                return response;
             }
             catch (MyCareException ex)
             {
-                resposta.Mensagem = ex.Message;
-                resposta.Status = false;
+                response.Mensagem = ex.Message;
+                response.Status = false;
 
-                return resposta;
+                return response;
             }
         }
 

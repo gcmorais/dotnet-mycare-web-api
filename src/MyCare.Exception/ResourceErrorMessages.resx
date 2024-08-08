@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CATEGORY_EMPTY" xml:space="preserve">
+    <value>Category is invalid or null.</value>
+  </data>
   <data name="DESCRIPTION_EMPTY" xml:space="preserve">
     <value>Description is invalid or null.</value>
   </data>
@@ -129,6 +132,9 @@
   <data name="ID_ERROR" xml:space="preserve">
     <value>No records with this id found!</value>
   </data>
+  <data name="MANUFACTURER_EMPTY" xml:space="preserve">
+    <value>Manufacturer is invalid or null.</value>
+  </data>
   <data name="NAME_EMPTY" xml:space="preserve">
     <value>Name is invalid or null.</value>
   </data>
@@ -140,6 +146,9 @@
   </data>
   <data name="PASSWORD_EMPTY" xml:space="preserve">
     <value>Password is invalid or null.</value>
+  </data>
+  <data name="REFERENCE_EMPTY" xml:space="preserve">
+    <value>Reference is invalid or null.</value>
   </data>
   <data name="STATUS_EMPTY" xml:space="preserve">
     <value>Status is invalid or null.</value>
