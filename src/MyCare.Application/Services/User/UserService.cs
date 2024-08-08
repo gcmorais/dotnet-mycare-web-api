@@ -30,7 +30,13 @@ namespace MyCare.Application.UseCases.User
             try
             {
 
-                Validate(requestRegisterUserJson);
+                Validate(
+                    null,
+                    requestRegisterUserJson.Name, 
+                    requestRegisterUserJson.Email, 
+                    requestRegisterUserJson.Password, 
+                    requestRegisterUserJson.ConfirmPassword
+                );
 
                 _passwordInterface.CreateHashPassword(requestRegisterUserJson.Password, out byte[] hashPassword, out byte[] saltPassword);
 
@@ -76,21 +82,13 @@ namespace MyCare.Application.UseCases.User
                     return response;
                 }
 
-                if (string.IsNullOrWhiteSpace(requestEditUserJson.Name))
-                {
-                    throw new MyCareException(ResourceErrorMessages.NAME_EMPTY);
-                }
-
-                if (string.IsNullOrWhiteSpace(requestEditUserJson.Email))
-                {
-                    throw new MyCareException(ResourceErrorMessages.EMAIL_EMPTY);
-                }
-
-                if (string.IsNullOrWhiteSpace(requestEditUserJson.Password))
-                {
-                    throw new MyCareException(ResourceErrorMessages.PASSWORD_EMPTY);
-                }
-
+                Validate(
+                    requestEditUserJson.Id,
+                    requestEditUserJson.Name,
+                    requestEditUserJson.Email,
+                    requestEditUserJson.Password,
+                    requestEditUserJson.Password
+                );
 
                 user.Name = requestEditUserJson.Name;
                 user.Email = requestEditUserJson.Email;
@@ -193,17 +191,17 @@ namespace MyCare.Application.UseCases.User
             }
         }
 
-        private void Validate(RequestRegisterUserJson request)
+        private void Validate(Guid? Id, string Name, string Email, string Password, string ConfirmPassword)
         {
 
-            var email = _context.Users.FirstOrDefault(x => x.Email == request.Email);
+            var email = _context.Users.FirstOrDefault(x => x.Email == Email && x.Id != Id);
 
-            if (string.IsNullOrWhiteSpace(request.Name))
+            if (string.IsNullOrWhiteSpace(Name))
             {
                 throw new MyCareException(ResourceErrorMessages.NAME_EMPTY);
             }
 
-            if (string.IsNullOrWhiteSpace(request.Email))
+            if (string.IsNullOrWhiteSpace(Email))
             {
                 throw new MyCareException(ResourceErrorMessages.EMAIL_EMPTY);
             }
@@ -213,12 +211,12 @@ namespace MyCare.Application.UseCases.User
                 throw new MyCareException(ResourceErrorMessages.EMAIL_ALREADY_REGISTERED);
             }
 
-            if (string.IsNullOrWhiteSpace(request.Password))
+            if (string.IsNullOrWhiteSpace(Password))
             {
                 throw new MyCareException(ResourceErrorMessages.PASSWORD_EMPTY);
             }
 
-            if(request.ConfirmPassword != request.Password)
+            if(ConfirmPassword != Password)
             {
                 throw new MyCareException(ResourceErrorMessages.PASSWORD_CONFIRM_ERROR);
             }

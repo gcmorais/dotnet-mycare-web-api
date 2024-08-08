@@ -26,7 +26,13 @@ public class MedicineService : IMedicineInterface
         {
             var user = await _context.Users.FirstOrDefaultAsync(userData => userData.Id == requestRegisterMedicineJson.User.Id);
 
-            Validate(requestRegisterMedicineJson);
+
+            Validate(
+                requestRegisterMedicineJson.Name,
+                requestRegisterMedicineJson.Category,
+                requestRegisterMedicineJson.Manufacturer,
+                requestRegisterMedicineJson.Reference
+            );
 
             if (user == null)
             {
@@ -89,25 +95,12 @@ public class MedicineService : IMedicineInterface
                 return response;
             }
 
-            if (string.IsNullOrWhiteSpace(requestEditMedicineJson.Name))
-            {
-                throw new MyCareException(ResourceErrorMessages.NAME_EMPTY);
-            }
-
-            if (string.IsNullOrWhiteSpace(requestEditMedicineJson.Category))
-            {
-                throw new MyCareException(ResourceErrorMessages.CATEGORY_EMPTY);
-            }
-
-            if (string.IsNullOrWhiteSpace(requestEditMedicineJson.Manufacturer))
-            {
-                throw new MyCareException(ResourceErrorMessages.MANUFACTURER_EMPTY);
-            }
-
-            if (string.IsNullOrWhiteSpace(requestEditMedicineJson.Reference))
-            {
-                throw new MyCareException(ResourceErrorMessages.REFERENCE_EMPTY);
-            }
+            Validate(
+                requestEditMedicineJson.Name,
+                requestEditMedicineJson.Category,
+                requestEditMedicineJson.Manufacturer,
+                requestEditMedicineJson.Reference
+            );
 
             medicament.Name = requestEditMedicineJson.Name;
             medicament.ActivePrinciple = requestEditMedicineJson.ActivePrinciple;
@@ -186,24 +179,24 @@ public class MedicineService : IMedicineInterface
         }
     }
 
-    private void Validate(RequestRegisterMedicineJson request)
+    private void Validate(string Name, string Category, string Manufacturer, string Reference)
     {
-        if (string.IsNullOrWhiteSpace(request.Name))
+        if (string.IsNullOrWhiteSpace(Name))
         {
             throw new MyCareException(ResourceErrorMessages.NAME_EMPTY);
         }
 
-        if (string.IsNullOrWhiteSpace(request.Category))
+        if (string.IsNullOrWhiteSpace(Category))
         {
             throw new MyCareException(ResourceErrorMessages.CATEGORY_EMPTY);
         }
 
-        if (string.IsNullOrWhiteSpace(request.Manufacturer))
+        if (string.IsNullOrWhiteSpace(Manufacturer))
         {
             throw new MyCareException(ResourceErrorMessages.MANUFACTURER_EMPTY);
         }
 
-        if (string.IsNullOrWhiteSpace(request.Reference))
+        if (string.IsNullOrWhiteSpace(Reference))
         {
             throw new MyCareException(ResourceErrorMessages.REFERENCE_EMPTY);
         }
