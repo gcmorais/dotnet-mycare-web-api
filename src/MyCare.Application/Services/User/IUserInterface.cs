@@ -14,5 +14,7 @@ namespace MyCare.Application.Services.User
         Task<ResponseModel<List<UserModel>>> EditUser(RequestEditUserJson requestEditUserJson);
 
         Task<ResponseModel<List<UserModel>>> DeleteUser(Guid userId);
+
+        Task<ResponseModel<UserModel>> Login(RequestUserLogin requestUserLogin);
     }
 }

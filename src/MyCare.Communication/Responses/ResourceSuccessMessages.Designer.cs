@@ -140,5 +140,14 @@ namespace MyCare.Communication.Responses {
                 return ResourceManager.GetString("LIST_USERS_SUCCESS_MESSAGE", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Login successful!.
+        /// </summary>
+        public static string LOG_IN_SUCCESS_MESSAGE {
+            get {
+                return ResourceManager.GetString("LOG_IN_SUCCESS_MESSAGE", resourceCulture);
+            }
+        }
     }
 }

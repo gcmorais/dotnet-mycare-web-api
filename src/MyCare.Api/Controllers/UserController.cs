@@ -60,5 +60,12 @@ namespace MyCare.Api.Controllers
             var users = await _userInterface.DeleteUser(userId);
             return Ok(users);
         }
+
+        [HttpPost("Login")]
+        public async Task<ActionResult<ResponseModel<List<UserModel>>>> Login(RequestUserLogin requestUserLogin)
+        {
+            var users = await _userInterface.Login(requestUserLogin);
+            return Ok(users);
+        }
     }
 }

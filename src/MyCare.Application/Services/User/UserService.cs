@@ -209,6 +209,41 @@ namespace MyCare.Application.UseCases.User
             return response;
         }
 
+        public async Task<ResponseModel<UserModel>> Login(RequestUserLogin requestUserLogin)
+        {
+            ResponseModel<UserModel> response = new();
+            try
+            {
+                var user = _context.Users.FirstOrDefault(x => x.Email == requestUserLogin.Email);
+
+                if(user == null)
+                {
+                    response.Message = ResourceErrorMessages.NO_REGISTRY;
+                    response.Status = false;
+
+                    return response;
+                }
+
+                if(!_passwordInterface.PasswordVerify(requestUserLogin.Password, user.HashPasswrod, user.SaltPassword))
+                {
+                    response.Message = ResourceErrorMessages.NO_REGISTRY;
+                    response.Status = false;
+
+                    return response;
+                }
+
+                response.Data = user; 
+                response.Message = ResourceSuccessMessages.LOG_IN_SUCCESS_MESSAGE;
+            }
+            catch (MyCareException ex)
+            {
+                response.Message = ex.Message;
+                response.Status = false;
+            }
+
+            return response;
+        }
+
         private void Validate(Guid? Id, string Name, string Email, string Password, string ConfirmPassword)
         {
 

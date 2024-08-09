@@ -144,4 +144,7 @@
   <data name="LIST_USERS_SUCCESS_MESSAGE" xml:space="preserve">
     <value>All users have been collected</value>
   </data>
+  <data name="LOG_IN_SUCCESS_MESSAGE" xml:space="preserve">
+    <value>Login successful!</value>
+  </data>
 </root>
