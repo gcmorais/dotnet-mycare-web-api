@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using MyCare.Application.Services.Medicine;
 using MyCare.Communication.Requests;
 using MyCare.Communication.Responses;
@@ -36,7 +35,7 @@ public class MedicineService : IMedicineInterface
 
             if (user == null)
             {
-                response.Mensagem = ResourceErrorMessages.ID_ERROR;
+                response.Message = ResourceErrorMessages.ID_ERROR;
                 return response;
             }
 
@@ -56,18 +55,47 @@ public class MedicineService : IMedicineInterface
             _context.Add(medicament);
             await _context.SaveChangesAsync();
 
-            response.Dados = await _context.Medicines.Include(a => a.User).ToListAsync();
-            response.Mensagem = ResourceSuccessMessages.CREATE_MED_SUCCESS_MESSAGE;
-
-            return response;
+            response.Data = await _context.Medicines.Include(a => a.User).ToListAsync();
+            response.Message = ResourceSuccessMessages.CREATE_MED_SUCCESS_MESSAGE;
         }
         catch (MyCareException ex)
         {
-            response.Mensagem = ex.Message;
+            response.Message = ex.Message;
             response.Status = false;
-
-            return response;
         }
+
+        return response;
+    }
+
+    public async Task<ResponseModel<List<MedicineModel>>> DeleteMedicament(int id)
+    {
+        ResponseModel<List<MedicineModel>> response = new();
+
+        try
+        {
+            var medicament = await _context.Medicines.FirstOrDefaultAsync(med => med.Id == id);
+
+            if(medicament == null)
+            {
+                response.Message = ResourceErrorMessages.NO_REGISTRY;
+                response.Status = false;
+
+                return response;
+            }
+
+            _context.Medicines.Remove(medicament);
+            await _context.SaveChangesAsync();
+
+            response.Data = await _context.Medicines.ToListAsync();
+            response.Message = ResourceSuccessMessages.DELETE_MED_SUCCESS_MESSAGE;
+        }
+        catch (MyCareException ex)
+        {
+            response.Message = ex.Message;
+            response.Status = false;
+        }
+
+        return response;
     }
 
     public async Task<ResponseModel<List<MedicineModel>>> EditMedicament(RequestEditMedicineJson requestEditMedicineJson)
@@ -85,13 +113,13 @@ public class MedicineService : IMedicineInterface
 
             if (medicament == null)
             {
-                response.Mensagem = ResourceErrorMessages.NO_REGISTRY;
+                response.Message = ResourceErrorMessages.NO_REGISTRY;
                 return response;
             }
 
             if (user == null)
             {
-                response.Mensagem = ResourceErrorMessages.ID_ERROR;
+                response.Message = ResourceErrorMessages.ID_ERROR;
                 return response;
             }
 
@@ -114,19 +142,16 @@ public class MedicineService : IMedicineInterface
             _context.Update(medicament);
             await _context.SaveChangesAsync();
 
-            response.Dados = await _context.Medicines.ToListAsync();
-            response.Mensagem = ResourceSuccessMessages.EDIT_MED_SUCCESS_MESSAGE;
-
-            return response;
-
+            response.Data = await _context.Medicines.ToListAsync();
+            response.Message = ResourceSuccessMessages.EDIT_MED_SUCCESS_MESSAGE;
         }
         catch (MyCareException ex)
         {
-            response.Mensagem = ex.Message;
-            response.Status = false;
-
-            return response;
+            response.Message = ex.Message;
+            response.Status = false; 
         }
+
+        return response;
     }
 
     public async Task<ResponseModel<MedicineModel>> GetMedicamentById(int id)
@@ -139,44 +164,40 @@ public class MedicineService : IMedicineInterface
 
             if(medicines == null)
             {
-                response.Mensagem = ResourceErrorMessages.NO_REGISTRY;
+                response.Message = ResourceErrorMessages.NO_REGISTRY;
                 return response;
             }
 
-            response.Dados = medicines;
-            response.Mensagem = ResourceSuccessMessages.LIST_MED_SUCCESS_MESSAGE;
-
-            return response;
+            response.Data = medicines;
+            response.Message = ResourceSuccessMessages.LIST_MED_SUCCESS_MESSAGE;
         }
         catch (MyCareException ex)
         {
-            response.Mensagem = ex.Message;
+            response.Message = ex.Message;
             response.Status = false;
-
-            return response;
         }
+
+        return response;
     }
 
     public async Task<ResponseModel<List<MedicineModel>>> ListMedicines()
     {
-        ResponseModel<List<MedicineModel>> resposta = new();
+        ResponseModel<List<MedicineModel>> response = new();
 
         try
         {
             var medicament = await _context.Medicines.Include(item => item.User).ToListAsync();
 
-            resposta.Dados = medicament;
-            resposta.Mensagem = ResourceSuccessMessages.LIST_MED_SUCCESS_MESSAGE;
-
-            return resposta;
+            response.Data = medicament;
+            response.Message = ResourceSuccessMessages.LIST_MED_SUCCESS_MESSAGE;
         }
         catch (MyCareException ex)
         {
-            resposta.Mensagem = ex.Message;
-            resposta.Status = false;
-
-            return resposta;
+            response.Message = ex.Message;
+            response.Status = false;
         }
+
+        return response;
     }
 
     private void Validate(string Name, string Category, string Manufacturer, string Reference)

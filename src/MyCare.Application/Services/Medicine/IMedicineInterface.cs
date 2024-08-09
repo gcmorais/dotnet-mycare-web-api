@@ -13,6 +13,6 @@ namespace MyCare.Application.Services.Medicine
         Task<ResponseModel<List<MedicineModel>>> CreateMedicament(RequestRegisterMedicineJson requestRegisterMedicineJson);
 
         Task<ResponseModel<List<MedicineModel>>> EditMedicament(RequestEditMedicineJson requestEditMedicineJson);
-
+        Task<ResponseModel<List<MedicineModel>>> DeleteMedicament(int id);
     }
 }

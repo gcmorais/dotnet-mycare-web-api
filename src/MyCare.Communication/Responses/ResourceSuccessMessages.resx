@@ -123,6 +123,12 @@
   <data name="CREATE_USER_MESSAGE_SUCCESS" xml:space="preserve">
     <value>User created successfully!</value>
   </data>
+  <data name="DELETE_MED_SUCCESS_MESSAGE" xml:space="preserve">
+    <value>Medicament deleted successfully!</value>
+  </data>
+  <data name="DELETE_USER_SUCCESS_MESSAGE" xml:space="preserve">
+    <value>The user was deleted successfully!</value>
+  </data>
   <data name="EDIT_MED_SUCCESS_MESSAGE" xml:space="preserve">
     <value>Medicament edited successfully!</value>
   </data>

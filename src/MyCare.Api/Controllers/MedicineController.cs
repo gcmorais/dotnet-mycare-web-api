@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyCare.Application.Services.Medicine;
-using MyCare.Application.Services.User;
 using MyCare.Communication.Requests;
 using MyCare.Communication.Responses;
 using MyCare.Infrastructure.Entities;
@@ -44,6 +43,13 @@ namespace MyCare.Api.Controllers
         public async Task<ActionResult<ResponseModel<MedicineModel>>> GetMedicamentById(int id)
         {
             var medicines = await _medicineInterface.GetMedicamentById(id);
+            return Ok(medicines);
+        }
+
+        [HttpDelete("DeleteMedicament")]
+        public async Task<ActionResult<ResponseModel<List<MedicineModel>>>> DeleteMedicament(int id)
+        {
+            var medicines = await _medicineInterface.DeleteMedicament(id);
             return Ok(medicines);
         }
     }

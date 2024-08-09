@@ -12,5 +12,7 @@ namespace MyCare.Application.Services.User
 
         Task<ResponseModel<List<UserModel>>> CreateUser(RequestRegisterUserJson requestRegisterUserJson);
         Task<ResponseModel<List<UserModel>>> EditUser(RequestEditUserJson requestEditUserJson);
+
+        Task<ResponseModel<List<UserModel>>> DeleteUser(Guid userId);
     }
 }

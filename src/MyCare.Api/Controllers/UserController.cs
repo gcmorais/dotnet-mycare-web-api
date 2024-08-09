@@ -53,5 +53,12 @@ namespace MyCare.Api.Controllers
             var users = await _userInterface.EditUser(requestEditUserJson);
             return Ok(users);
         }
+
+        [HttpDelete("DeleteUser")]
+        public async Task<ActionResult<ResponseModel<List<UserModel>>>> DeleteUser(Guid userId)
+        {
+            var users = await _userInterface.DeleteUser(userId);
+            return Ok(users);
+        }
     }
 }

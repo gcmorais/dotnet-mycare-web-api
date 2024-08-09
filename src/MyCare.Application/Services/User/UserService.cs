@@ -1,6 +1,4 @@
-﻿using Azure;
-using Azure.Core;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using MyCare.Application.Services.Password;
 using MyCare.Application.Services.User;
 using MyCare.Communication.Requests;
@@ -25,11 +23,10 @@ namespace MyCare.Application.UseCases.User
 
         public async Task<ResponseModel<List<UserModel>>> CreateUser(RequestRegisterUserJson requestRegisterUserJson)
         {
-            ResponseModel<List<UserModel>> resposta = new();
+            ResponseModel<List<UserModel>> response = new();
 
             try
             {
-
                 Validate(
                     null,
                     requestRegisterUserJson.Name, 
@@ -52,18 +49,49 @@ namespace MyCare.Application.UseCases.User
 
                 await _context.SaveChangesAsync();
 
-                resposta.Dados = await _context.Users.ToListAsync();
-                resposta.Mensagem = ResourceSuccessMessages.CREATE_USER_MESSAGE_SUCCESS;
-
-                return resposta;
+                response.Data = await _context.Users.ToListAsync();
+                response.Message = ResourceSuccessMessages.CREATE_USER_MESSAGE_SUCCESS;
             }
             catch (MyCareException ex)
             {
-                resposta.Mensagem = ex.Message;
-                resposta.Status = false;
-
-                return resposta;
+                response.Message = ex.Message;
+                response.Status = false;
             }
+
+            return response;
+        }
+
+        public async Task<ResponseModel<List<UserModel>>> DeleteUser(Guid userId)
+        {
+
+            ResponseModel<List<UserModel>> response = new();
+
+            try
+            {
+
+                var user = await _context.Users.FirstOrDefaultAsync(user => user.Id == userId);
+
+                if(user == null)
+                {
+                    response.Message = ResourceErrorMessages.NO_REGISTRY;
+                    response.Status = false;
+
+                    return response;
+                }
+
+                _context.Users.Remove(user);
+                await _context.SaveChangesAsync();
+
+                response.Data = await _context.Users.ToListAsync();
+                response.Message = ResourceSuccessMessages.DELETE_USER_SUCCESS_MESSAGE;
+            }
+            catch (MyCareException ex)
+            {
+                response.Message = ex.Message;
+                response.Status = false;
+            }
+
+            return response;
         }
 
         public async Task<ResponseModel<List<UserModel>>> EditUser(RequestEditUserJson requestEditUserJson)
@@ -77,7 +105,7 @@ namespace MyCare.Application.UseCases.User
 
                 if(user == null)
                 {
-                    response.Mensagem = ResourceErrorMessages.NO_REGISTRY;
+                    response.Message = ResourceErrorMessages.NO_REGISTRY;
 
                     return response;
                 }
@@ -98,51 +126,46 @@ namespace MyCare.Application.UseCases.User
                 _context.Update(user);
                 await _context.SaveChangesAsync();
 
-                response.Dados = await _context.Users.ToListAsync();
-                response.Mensagem = ResourceSuccessMessages.EDIT_USER_SUCCESS_MESSAGE;
-
-                return response;
+                response.Data = await _context.Users.ToListAsync();
+                response.Message = ResourceSuccessMessages.EDIT_USER_SUCCESS_MESSAGE;
             }
             catch (MyCareException ex)
             {
-                response.Mensagem = ex.Message;
+                response.Message = ex.Message;
                 response.Status = false;
-
-                return response;
             }
+
+            return response;
         }
 
         public async Task<ResponseModel<UserModel>> GetUserById(Guid userId)
         {
-            ResponseModel<UserModel> resposta = new();
+            ResponseModel<UserModel> response = new();
             try
             {
                 var users = await _context.Users.FirstOrDefaultAsync(user => user.Id == userId);
 
                 if(users == null)
                 {
-                    resposta.Mensagem = ResourceErrorMessages.NO_REGISTRY;
-                    return resposta;
+                    response.Message = ResourceErrorMessages.NO_REGISTRY;
+                    return response;
                 }
 
-                resposta.Dados = users;
-                resposta.Mensagem = ResourceSuccessMessages.GET_USER_SUCCESS_MESSAGE;
-
-                return resposta;
+                response.Data = users;
+                response.Message = ResourceSuccessMessages.GET_USER_SUCCESS_MESSAGE;
             }
             catch (MyCareException ex)
             {
-                resposta.Mensagem = ex.Message;
-                resposta.Status = false;
-
-                return resposta;
+                response.Message = ex.Message;
+                response.Status = false;
             }
 
+            return response;
         }
 
         public async Task<ResponseModel<UserModel>> GetUserByMedId(int medId)
         {
-            ResponseModel<UserModel> resposta = new();
+            ResponseModel<UserModel> response = new();
             try
             {
                 var medicament = await _context.Medicines
@@ -151,44 +174,39 @@ namespace MyCare.Application.UseCases.User
 
                 if (medicament == null)
                 {
-                    resposta.Mensagem = ResourceErrorMessages.NO_REGISTRY;
-                    return resposta;
+                    response.Message = ResourceErrorMessages.NO_REGISTRY;
+                    return response;
                 }
 
-                resposta.Dados = medicament.User;
-                resposta.Mensagem = ResourceSuccessMessages.GET_USER_SUCCESS_MESSAGE;
-
-                return resposta;
+                response.Data = medicament.User;
+                response.Message = ResourceSuccessMessages.GET_USER_SUCCESS_MESSAGE;
             }
             catch (MyCareException ex)
             {
-                resposta.Mensagem = ex.Message;
-                resposta.Status = false;
-
-                return resposta;
+                response.Message = ex.Message;
+                response.Status = false;
             }
 
+            return response;
         }
 
         public async Task<ResponseModel<List<UserModel>>> ListUsers()
         {
-            ResponseModel<List<UserModel>> resposta = new();
+            ResponseModel<List<UserModel>> response = new();
             try
             {
                 var users = await _context.Users.ToListAsync();
 
-                resposta.Dados = users;
-                resposta.Mensagem = ResourceSuccessMessages.LIST_USERS_SUCCESS_MESSAGE;
-
-                return resposta;
+                response.Data = users;
+                response.Message = ResourceSuccessMessages.LIST_USERS_SUCCESS_MESSAGE;
             }
             catch (MyCareException ex)
             {
-                resposta.Mensagem = ex.Message;
-                resposta.Status = false;
-
-                return resposta;
+                response.Message = ex.Message;
+                response.Status = false;
             }
+
+            return response;
         }
 
         private void Validate(Guid? Id, string Name, string Email, string Password, string ConfirmPassword)

@@ -79,6 +79,24 @@ namespace MyCare.Communication.Responses {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Medicament deleted successfully!.
+        /// </summary>
+        public static string DELETE_MED_SUCCESS_MESSAGE {
+            get {
+                return ResourceManager.GetString("DELETE_MED_SUCCESS_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The user was deleted successfully!.
+        /// </summary>
+        public static string DELETE_USER_SUCCESS_MESSAGE {
+            get {
+                return ResourceManager.GetString("DELETE_USER_SUCCESS_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Medicament edited successfully!.
         /// </summary>
         public static string EDIT_MED_SUCCESS_MESSAGE {
