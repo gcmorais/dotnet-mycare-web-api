@@ -120,8 +120,26 @@
   <data name="CATEGORY_EMPTY" xml:space="preserve">
     <value>Category is invalid or null.</value>
   </data>
+  <data name="CREATE_MESSAGE_ERROR" xml:space="preserve">
+    <value>An error occurred! Unable to Create!</value>
+  </data>
+  <data name="CREATE_TITLE_ERROR" xml:space="preserve">
+    <value>Create User - Error!</value>
+  </data>
+  <data name="DELETE_ERROR_MESSAGE" xml:space="preserve">
+    <value>An error occurred! Unable to Delete!</value>
+  </data>
+  <data name="DELETE_ERROR_TITLE" xml:space="preserve">
+    <value>Delete  - Error!</value>
+  </data>
   <data name="DESCRIPTION_EMPTY" xml:space="preserve">
     <value>Description is invalid or null.</value>
+  </data>
+  <data name="EDIT_ERROR_MESSAGE" xml:space="preserve">
+    <value>An error occurred! Unable to Edit!</value>
+  </data>
+  <data name="EDIT_ERROR_TITLE" xml:space="preserve">
+    <value>Edit - Error!</value>
   </data>
   <data name="EMAIL_ALREADY_REGISTERED" xml:space="preserve">
     <value>Credentials error: Email already registered.</value>
@@ -129,8 +147,26 @@
   <data name="EMAIL_EMPTY" xml:space="preserve">
     <value>Email is invalid or null.</value>
   </data>
+  <data name="GET_BY_ID_ERROR_MESSAGE" xml:space="preserve">
+    <value>An error occurred! Unable to get by ID!</value>
+  </data>
+  <data name="GET_BY_ID_ERROR_TITLE" xml:space="preserve">
+    <value>Get by ID - Error!</value>
+  </data>
   <data name="ID_ERROR" xml:space="preserve">
     <value>No records with this id found!</value>
+  </data>
+  <data name="LIST_ERROR_MESSAGE" xml:space="preserve">
+    <value>An error occurred! Unable to list.</value>
+  </data>
+  <data name="LIST_ERROR_TITLE" xml:space="preserve">
+    <value>List - Error!</value>
+  </data>
+  <data name="LOG_IN_ERROR_MESSAGE" xml:space="preserve">
+    <value>An error occurred! Unable to complete log In!</value>
+  </data>
+  <data name="LOG_IN_ERROR_TITLE" xml:space="preserve">
+    <value>Log In - Error!</value>
   </data>
   <data name="MANUFACTURER_EMPTY" xml:space="preserve">
     <value>Manufacturer is invalid or null.</value>

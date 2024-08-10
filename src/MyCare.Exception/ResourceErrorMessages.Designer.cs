@@ -70,11 +70,65 @@ namespace MyCare.Exception {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a An error occurred! Unable to Create!.
+        /// </summary>
+        public static string CREATE_MESSAGE_ERROR {
+            get {
+                return ResourceManager.GetString("CREATE_MESSAGE_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Create User - Error!.
+        /// </summary>
+        public static string CREATE_TITLE_ERROR {
+            get {
+                return ResourceManager.GetString("CREATE_TITLE_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a An error occurred! Unable to Delete!.
+        /// </summary>
+        public static string DELETE_ERROR_MESSAGE {
+            get {
+                return ResourceManager.GetString("DELETE_ERROR_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Delete  - Error!.
+        /// </summary>
+        public static string DELETE_ERROR_TITLE {
+            get {
+                return ResourceManager.GetString("DELETE_ERROR_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Description is invalid or null..
         /// </summary>
         public static string DESCRIPTION_EMPTY {
             get {
                 return ResourceManager.GetString("DESCRIPTION_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a An error occurred! Unable to Edit!.
+        /// </summary>
+        public static string EDIT_ERROR_MESSAGE {
+            get {
+                return ResourceManager.GetString("EDIT_ERROR_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Edit - Error!.
+        /// </summary>
+        public static string EDIT_ERROR_TITLE {
+            get {
+                return ResourceManager.GetString("EDIT_ERROR_TITLE", resourceCulture);
             }
         }
         
@@ -97,11 +151,65 @@ namespace MyCare.Exception {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a An error occurred! Unable to get by ID!.
+        /// </summary>
+        public static string GET_BY_ID_ERROR_MESSAGE {
+            get {
+                return ResourceManager.GetString("GET_BY_ID_ERROR_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Get by ID - Error!.
+        /// </summary>
+        public static string GET_BY_ID_ERROR_TITLE {
+            get {
+                return ResourceManager.GetString("GET_BY_ID_ERROR_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a No records with this id found!.
         /// </summary>
         public static string ID_ERROR {
             get {
                 return ResourceManager.GetString("ID_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a An error occurred! Unable to list..
+        /// </summary>
+        public static string LIST_ERROR_MESSAGE {
+            get {
+                return ResourceManager.GetString("LIST_ERROR_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a List - Error!.
+        /// </summary>
+        public static string LIST_ERROR_TITLE {
+            get {
+                return ResourceManager.GetString("LIST_ERROR_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a An error occurred! Unable to complete log In!.
+        /// </summary>
+        public static string LOG_IN_ERROR_MESSAGE {
+            get {
+                return ResourceManager.GetString("LOG_IN_ERROR_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Log In - Error!.
+        /// </summary>
+        public static string LOG_IN_ERROR_TITLE {
+            get {
+                return ResourceManager.GetString("LOG_IN_ERROR_TITLE", resourceCulture);
             }
         }
         

@@ -120,11 +120,17 @@
   <data name="CREATE_MED_SUCCESS_MESSAGE" xml:space="preserve">
     <value>Medicine created successfully!</value>
   </data>
+  <data name="CREATE_SUCCESS_TITLE" xml:space="preserve">
+    <value>Create - Successfully!</value>
+  </data>
   <data name="CREATE_USER_MESSAGE_SUCCESS" xml:space="preserve">
     <value>User created successfully!</value>
   </data>
   <data name="DELETE_MED_SUCCESS_MESSAGE" xml:space="preserve">
     <value>Medicament deleted successfully!</value>
+  </data>
+  <data name="DELETE_SUCCESS_TITLE" xml:space="preserve">
+    <value>Delete - Successfully!</value>
   </data>
   <data name="DELETE_USER_SUCCESS_MESSAGE" xml:space="preserve">
     <value>The user was deleted successfully!</value>
@@ -132,8 +138,14 @@
   <data name="EDIT_MED_SUCCESS_MESSAGE" xml:space="preserve">
     <value>Medicament edited successfully!</value>
   </data>
+  <data name="EDIT_SUCCESS_TITLE" xml:space="preserve">
+    <value>Edit - Successfully!</value>
+  </data>
   <data name="EDIT_USER_SUCCESS_MESSAGE" xml:space="preserve">
     <value>User edited successfully!</value>
+  </data>
+  <data name="GET_BY_ID_TITLE" xml:space="preserve">
+    <value>Get By ID - Successfully!</value>
   </data>
   <data name="GET_USER_SUCCESS_MESSAGE" xml:space="preserve">
     <value>The user was found successfully</value>
@@ -141,10 +153,16 @@
   <data name="LIST_MED_SUCCESS_MESSAGE" xml:space="preserve">
     <value>All medications were returned!</value>
   </data>
+  <data name="LIST_SUCCESS_TITLE" xml:space="preserve">
+    <value>List - Successfully!</value>
+  </data>
   <data name="LIST_USERS_SUCCESS_MESSAGE" xml:space="preserve">
-    <value>All users have been collected</value>
+    <value>All users have been collected!</value>
   </data>
   <data name="LOG_IN_SUCCESS_MESSAGE" xml:space="preserve">
     <value>Login successful!</value>
+  </data>
+  <data name="LOG_IN_SUCCESS_TITLE" xml:space="preserve">
+    <value>Log In- Successfully!</value>
   </data>
 </root>

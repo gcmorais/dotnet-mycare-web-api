@@ -70,6 +70,15 @@ namespace MyCare.Communication.Responses {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Create - Successfully!.
+        /// </summary>
+        public static string CREATE_SUCCESS_TITLE {
+            get {
+                return ResourceManager.GetString("CREATE_SUCCESS_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a User created successfully!.
         /// </summary>
         public static string CREATE_USER_MESSAGE_SUCCESS {
@@ -84,6 +93,15 @@ namespace MyCare.Communication.Responses {
         public static string DELETE_MED_SUCCESS_MESSAGE {
             get {
                 return ResourceManager.GetString("DELETE_MED_SUCCESS_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Delete - Successfully!.
+        /// </summary>
+        public static string DELETE_SUCCESS_TITLE {
+            get {
+                return ResourceManager.GetString("DELETE_SUCCESS_TITLE", resourceCulture);
             }
         }
         
@@ -106,11 +124,29 @@ namespace MyCare.Communication.Responses {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Edit - Successfully!.
+        /// </summary>
+        public static string EDIT_SUCCESS_TITLE {
+            get {
+                return ResourceManager.GetString("EDIT_SUCCESS_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a User edited successfully!.
         /// </summary>
         public static string EDIT_USER_SUCCESS_MESSAGE {
             get {
                 return ResourceManager.GetString("EDIT_USER_SUCCESS_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Get By ID - Successfully!.
+        /// </summary>
+        public static string GET_BY_ID_TITLE {
+            get {
+                return ResourceManager.GetString("GET_BY_ID_TITLE", resourceCulture);
             }
         }
         
@@ -133,7 +169,16 @@ namespace MyCare.Communication.Responses {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a All users have been collected.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a List - Successfully!.
+        /// </summary>
+        public static string LIST_SUCCESS_TITLE {
+            get {
+                return ResourceManager.GetString("LIST_SUCCESS_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a All users have been collected!.
         /// </summary>
         public static string LIST_USERS_SUCCESS_MESSAGE {
             get {
@@ -147,6 +192,15 @@ namespace MyCare.Communication.Responses {
         public static string LOG_IN_SUCCESS_MESSAGE {
             get {
                 return ResourceManager.GetString("LOG_IN_SUCCESS_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Log In- Successfully!.
+        /// </summary>
+        public static string LOG_IN_SUCCESS_TITLE {
+            get {
+                return ResourceManager.GetString("LOG_IN_SUCCESS_TITLE", resourceCulture);
             }
         }
     }

@@ -7,6 +7,7 @@ using MyCare.Exception;
 using MyCare.Exception.ExceptionsBase;
 using MyCare.Infrastructure;
 using MyCare.Infrastructure.Entities;
+using MyCare.Infrastructure.Logs;
 
 namespace MyCare.Application.UseCases.User
 {
@@ -51,11 +52,15 @@ namespace MyCare.Application.UseCases.User
 
                 response.Data = await _context.Users.ToListAsync();
                 response.Message = ResourceSuccessMessages.CREATE_USER_MESSAGE_SUCCESS;
+
+                Log.LogToFile(ResourceSuccessMessages.CREATE_SUCCESS_TITLE, ResourceSuccessMessages.CREATE_USER_MESSAGE_SUCCESS);
             }
             catch (MyCareException ex)
             {
                 response.Message = ex.Message;
                 response.Status = false;
+
+                Log.LogToFile(ResourceErrorMessages.CREATE_TITLE_ERROR, ResourceErrorMessages.CREATE_MESSAGE_ERROR);
             }
 
             return response;
@@ -84,11 +89,15 @@ namespace MyCare.Application.UseCases.User
 
                 response.Data = await _context.Users.ToListAsync();
                 response.Message = ResourceSuccessMessages.DELETE_USER_SUCCESS_MESSAGE;
+
+                Log.LogToFile(ResourceSuccessMessages.DELETE_SUCCESS_TITLE, ResourceSuccessMessages.DELETE_USER_SUCCESS_MESSAGE);
             }
             catch (MyCareException ex)
             {
                 response.Message = ex.Message;
                 response.Status = false;
+
+                Log.LogToFile(ResourceErrorMessages.DELETE_ERROR_TITLE, ResourceErrorMessages.DELETE_ERROR_MESSAGE);
             }
 
             return response;
@@ -128,11 +137,15 @@ namespace MyCare.Application.UseCases.User
 
                 response.Data = await _context.Users.ToListAsync();
                 response.Message = ResourceSuccessMessages.EDIT_USER_SUCCESS_MESSAGE;
+
+                Log.LogToFile(ResourceSuccessMessages.EDIT_SUCCESS_TITLE, ResourceSuccessMessages.EDIT_USER_SUCCESS_MESSAGE);
             }
             catch (MyCareException ex)
             {
                 response.Message = ex.Message;
                 response.Status = false;
+
+                Log.LogToFile(ResourceErrorMessages.EDIT_ERROR_MESSAGE, ResourceErrorMessages.EDIT_ERROR_MESSAGE);
             }
 
             return response;
@@ -153,11 +166,15 @@ namespace MyCare.Application.UseCases.User
 
                 response.Data = users;
                 response.Message = ResourceSuccessMessages.GET_USER_SUCCESS_MESSAGE;
+
+                Log.LogToFile(ResourceSuccessMessages.GET_BY_ID_TITLE, ResourceSuccessMessages.GET_USER_SUCCESS_MESSAGE);
             }
             catch (MyCareException ex)
             {
                 response.Message = ex.Message;
                 response.Status = false;
+
+                Log.LogToFile(ResourceErrorMessages.GET_BY_ID_ERROR_TITLE, ResourceErrorMessages.GET_BY_ID_ERROR_MESSAGE);
             }
 
             return response;
@@ -180,11 +197,15 @@ namespace MyCare.Application.UseCases.User
 
                 response.Data = medicament.User;
                 response.Message = ResourceSuccessMessages.GET_USER_SUCCESS_MESSAGE;
+
+                Log.LogToFile(ResourceSuccessMessages.GET_BY_ID_TITLE, ResourceSuccessMessages.GET_USER_SUCCESS_MESSAGE);
             }
             catch (MyCareException ex)
             {
                 response.Message = ex.Message;
                 response.Status = false;
+
+                Log.LogToFile(ResourceErrorMessages.GET_BY_ID_ERROR_TITLE, ResourceErrorMessages.GET_BY_ID_ERROR_MESSAGE);
             }
 
             return response;
@@ -199,11 +220,15 @@ namespace MyCare.Application.UseCases.User
 
                 response.Data = users;
                 response.Message = ResourceSuccessMessages.LIST_USERS_SUCCESS_MESSAGE;
+
+                Log.LogToFile(ResourceSuccessMessages.LIST_SUCCESS_TITLE, ResourceSuccessMessages.LIST_USERS_SUCCESS_MESSAGE);
             }
             catch (MyCareException ex)
             {
                 response.Message = ex.Message;
                 response.Status = false;
+
+                Log.LogToFile(ResourceErrorMessages.LIST_ERROR_TITLE, ResourceErrorMessages.LIST_ERROR_MESSAGE);
             }
 
             return response;
@@ -234,11 +259,16 @@ namespace MyCare.Application.UseCases.User
 
                 response.Data = user; 
                 response.Message = ResourceSuccessMessages.LOG_IN_SUCCESS_MESSAGE;
+
+                Log.LogToFile(ResourceSuccessMessages.LOG_IN_SUCCESS_TITLE, ResourceSuccessMessages.LOG_IN_SUCCESS_MESSAGE);
+
             }
             catch (MyCareException ex)
             {
                 response.Message = ex.Message;
                 response.Status = false;
+
+                Log.LogToFile(ResourceErrorMessages.LOG_IN_ERROR_TITLE, ResourceErrorMessages.LOG_IN_ERROR_MESSAGE);
             }
 
             return response;

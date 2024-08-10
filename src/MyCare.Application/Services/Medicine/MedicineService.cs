@@ -6,6 +6,7 @@ using MyCare.Exception;
 using MyCare.Exception.ExceptionsBase;
 using MyCare.Infrastructure;
 using MyCare.Infrastructure.Entities;
+using MyCare.Infrastructure.Logs;
 
 namespace MyCare.Application.UseCases.Medicine;
 public class MedicineService : IMedicineInterface
@@ -57,11 +58,15 @@ public class MedicineService : IMedicineInterface
 
             response.Data = await _context.Medicines.Include(a => a.User).ToListAsync();
             response.Message = ResourceSuccessMessages.CREATE_MED_SUCCESS_MESSAGE;
+
+            Log.LogToFile(ResourceSuccessMessages.CREATE_SUCCESS_TITLE, ResourceSuccessMessages.CREATE_MED_SUCCESS_MESSAGE);
         }
         catch (MyCareException ex)
         {
             response.Message = ex.Message;
             response.Status = false;
+
+            Log.LogToFile(ResourceErrorMessages.CREATE_TITLE_ERROR, ResourceErrorMessages.CREATE_MESSAGE_ERROR);
         }
 
         return response;
@@ -88,11 +93,15 @@ public class MedicineService : IMedicineInterface
 
             response.Data = await _context.Medicines.ToListAsync();
             response.Message = ResourceSuccessMessages.DELETE_MED_SUCCESS_MESSAGE;
+
+            Log.LogToFile(ResourceSuccessMessages.DELETE_SUCCESS_TITLE, ResourceSuccessMessages.DELETE_MED_SUCCESS_MESSAGE);
         }
         catch (MyCareException ex)
         {
             response.Message = ex.Message;
             response.Status = false;
+
+            Log.LogToFile(ResourceErrorMessages.DELETE_ERROR_TITLE, ResourceErrorMessages.DELETE_ERROR_MESSAGE);
         }
 
         return response;
@@ -144,11 +153,15 @@ public class MedicineService : IMedicineInterface
 
             response.Data = await _context.Medicines.ToListAsync();
             response.Message = ResourceSuccessMessages.EDIT_MED_SUCCESS_MESSAGE;
+
+            Log.LogToFile(ResourceSuccessMessages.EDIT_SUCCESS_TITLE, ResourceSuccessMessages.EDIT_MED_SUCCESS_MESSAGE);
         }
         catch (MyCareException ex)
         {
             response.Message = ex.Message;
-            response.Status = false; 
+            response.Status = false;
+
+            Log.LogToFile(ResourceErrorMessages.EDIT_ERROR_MESSAGE, ResourceErrorMessages.EDIT_ERROR_MESSAGE);
         }
 
         return response;
@@ -170,11 +183,15 @@ public class MedicineService : IMedicineInterface
 
             response.Data = medicines;
             response.Message = ResourceSuccessMessages.LIST_MED_SUCCESS_MESSAGE;
+
+            Log.LogToFile(ResourceSuccessMessages.GET_BY_ID_TITLE, ResourceSuccessMessages.LIST_MED_SUCCESS_MESSAGE);
         }
         catch (MyCareException ex)
         {
             response.Message = ex.Message;
             response.Status = false;
+
+            Log.LogToFile(ResourceErrorMessages.GET_BY_ID_ERROR_TITLE, ResourceErrorMessages.GET_BY_ID_ERROR_MESSAGE);
         }
 
         return response;
@@ -190,11 +207,15 @@ public class MedicineService : IMedicineInterface
 
             response.Data = medicament;
             response.Message = ResourceSuccessMessages.LIST_MED_SUCCESS_MESSAGE;
+
+            Log.LogToFile(ResourceSuccessMessages.LIST_SUCCESS_TITLE, ResourceSuccessMessages.LIST_MED_SUCCESS_MESSAGE);
         }
         catch (MyCareException ex)
         {
             response.Message = ex.Message;
             response.Status = false;
+
+            Log.LogToFile(ResourceErrorMessages.LIST_ERROR_TITLE, ResourceErrorMessages.LIST_ERROR_MESSAGE);
         }
 
         return response;
